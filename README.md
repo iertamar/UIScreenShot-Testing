@@ -36,7 +36,8 @@
    
 ## Author
    **Amar Prakash Mishra** - *Initial work* - [UIScreenShot-Testing](https://github.com/iertamar/UIScreenShot-Testing)
-   Created by Amar Prakash Mishra, @iertamar on 23/05/19.
+   
+   Created by Amar Prakash Mishra, on 23/05/19.
    
 ## Contact
   Share feedback if you feel anything needs to be improved, I would be happy to hear.
