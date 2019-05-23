@@ -25,38 +25,43 @@ class EatinProgramUITests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    
+    // This function is mainly used to take screenShot and storing into the file (Your device).
+    func testWriteSelectedBurger() {
+        let file = "copy2.png"
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let app = XCUIApplication()
+        app.tables.children(matching: .cell).element(boundBy: 0).children(matching: .textView).element.tap()
+
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).otherElements.containing(.image, identifier:"burger0").element.waitForExistence(timeout: 2)
+
+
+        let mainScreenScreenshot = XCUIScreen.main.screenshot()
+        let mainScreenScreenshotAttach = XCTAttachment(screenshot: mainScreenScreenshot)
+        self.add(mainScreenScreenshotAttach)
+
+        let data = mainScreenScreenshot.image.pngData()
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(file)
+
+            //writing
+            do {
+                try data?.write(to: fileURL)
+            }
+            catch {
+                print("Error: \(error)")
+            }
+        }
     }
     
-//    func testWriteSelectedBurger() {
-//        let file = "copy2.png"
-//
-//        let app = XCUIApplication()
-//        app.tables.children(matching: .cell).element(boundBy: 0).children(matching: .textView).element.tap()
-//
-//        app.collectionViews.children(matching: .cell).element(boundBy: 0).otherElements.containing(.image, identifier:"burger0").element.waitForExistence(timeout: 2)
-//
-//
-//        let mainScreenScreenshot = XCUIScreen.main.screenshot()
-//        let mainScreenScreenshotAttach = XCTAttachment(screenshot: mainScreenScreenshot)
-//        self.add(mainScreenScreenshotAttach)
-//
-//        let data = mainScreenScreenshot.image.pngData()
-//        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-//            let fileURL = dir.appendingPathComponent(file)
-//
-//            //writing
-//            do {
-//                try data?.write(to: fileURL)
-//            }
-//            catch {
-//                print("Error: \(error)")
-//            }
-//        }
-//    }
+    // This function takes one screen shot currently and one which we have stored into file and compares both
+    // whether they are equal or not.
+    
+    // tolerance == 0.0 means both the images should be exact equal.
+    // tolerance == 0.1  means if two images are not matching 10% then also It will say both images are equal.
+    
+    
     
     func testReadSelectedBurger() {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
@@ -116,6 +121,7 @@ class EatinProgramUITests: XCTestCase {
         }
     }
     
+    
     func testReadSelectedBurgerDetailPage() {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent("copy3.png")
@@ -130,8 +136,6 @@ class EatinProgramUITests: XCTestCase {
                 let backButton = app.navigationBars["nav"].buttons["Back"]
                 backButton.waitForExistence(timeout: 2)
             }
-            
-            // SOME OF THE CODES I HAVE PRODUCED AND THEN ADDED MY COMPARE LOGIC
             
             let mainScreenScreenshot = XCUIScreen.main.screenshot()
             let currImage = mainScreenScreenshot.image
@@ -154,74 +158,10 @@ class EatinProgramUITests: XCTestCase {
             }
         }
     }
+
     
-//    func testReadDiffSelectedBurgerDetailPage() {
-//        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-//            let fileURL = dir.appendingPathComponent("copy3.png")
-//            let fileImage = UIImage(contentsOfFile: fileURL.path)
-//
-//            let app = XCUIApplication()
-//            app.tables.children(matching: .cell).element(boundBy: 0).children(matching: .textView).element.tap()
-//
-//            let cellsQuery = app.collectionViews.cells
-//            let burger3Element = cellsQuery.otherElements.containing(.image, identifier:"burger3").element
-//            burger3Element.waitForExistence(timeout: 2)
-//            burger3Element.tap()
-//
-//            let backButton = app.navigationBars["nav"].buttons["Back"]
-//            backButton.waitForExistence(timeout: 2)
-//            let mainScreenScreenshot = XCUIScreen.main.screenshot()
-//            let currImage = mainScreenScreenshot.image
-//
-//            let fileAttach = XCTAttachment(image: fileImage!)
-//            self.add(fileAttach)
-//            let currAttach = XCTAttachment(image: currImage)
-//            self.add(currAttach)
-//
-//            let data1 = currImage.pngData()
-//            let data2 = fileImage!.pngData()
-//            let response = compare(tolerance: 0.0, expected: data1!, observed: data2!)
-//            print(response)
-//            XCTAssertFalse(response)
-//        }
-//    }
+    // This function is used to compare two images pixel by pixel.
     
-//    func testWriteSelectedPage() {
-//        let file = "copy4.png"
-//
-//        let app = XCUIApplication()
-//        app.tables.children(matching: .cell).element(boundBy: 0).children(matching: .textView).element.tap()
-//
-//        let cellsQuery = app.collectionViews.cells
-//        let burger2Element = cellsQuery.otherElements.containing(.image, identifier:"burger2").element
-//        burger2Element.waitForExistence(timeout: 2)
-//        burger2Element.tap()
-//
-//        let backButton = app.navigationBars["nav"].buttons["Back"]
-//        backButton.waitForExistence(timeout: 2)
-//
-////        UIGraphicsBeginImageContextWithOptions(CGSize(width: 100, height: 150), false, 0);
-////
-////        drawViewHierarchyInRect(CGRect(x: 50, y: 50, width: app.frame.size.width, height: app.frame.size.height), afterScreenUpdates: true)
-//
-//        let mainScreenScreenshot = XCUIScreen.main.screenshot()
-////        let mainScreenScreenshotAttach = XCTAttachment(screenshot: mainScreenScreenshot)
-////        self.add(mainScreenScreenshotAttach)
-////
-////        let data = mainScreenScreenshot.image.pngData()
-//        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-//            let fileURL = dir.appendingPathComponent(file)
-//
-//            //writing
-//            do {
-//                //try data?.write(to: fileURL)
-//            }
-//            catch {
-//                print("Error: \(error)")
-//            }
-//        }
-//    }
-//
     private func compare(tolerance: Float, expected: Data, observed: Data) -> Bool {
         guard let expectedUIImage = UIImage(data: expected), let observedUIImage = UIImage(data: observed) else {
             return false
