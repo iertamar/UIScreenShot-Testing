@@ -28,10 +28,11 @@
    5. Then compares pixel by pixel and based on the tolerance it returns true or false 
       indicating whether images are equal or not.
         
-   Make Sure if you are setting tolerance == 0.0 , means images should exactly be equal.
-   See on the top, time should also be same.
-   if you don't want full screen shot then you can define frame for which you want to take screen shot.
-   tolerance == 0.1  means if two images are not matching 10% then also It will say both images are equal. 
+    Make Sure if you are setting tolerance == 0.0 , means images should exactly be equal.
+    See on the top, time should also be same.
+    
+    if you don't want full screen shot then you can define frame for which you want to take screen shot.
+    tolerance == 0.1  means if two images are not matching 10% then also compare method will say that both images are equal. 
    
 ## Author
    **Amar Prakash Mishra** - *Initial work* - [UIScreenShot-Testing](https://github.com/iertamar/UIScreenShot-Testing)
