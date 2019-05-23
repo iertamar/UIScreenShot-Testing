@@ -1,6 +1,6 @@
 # UIScreenShot-Testing
-   Here Initially we will take the ScreenShot and store into the file and then at any time again we can take
-   the ScreenShot and compare to know is there any changes happened
+   Here Initially we will take one ScreenShot and store into the file and then at any time again we can take
+   one more ScreenShot and compares both to know is there any changes happened.
     
 ## Getting Started
    To run the project, clone the repo, and simply run.
