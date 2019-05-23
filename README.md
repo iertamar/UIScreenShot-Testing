@@ -1,9 +1,9 @@
 # UIScreenShot-Testing
 
-1.   First take the screen shot and store into file, then run the testcases.
+1.   First take the screen shot and store into file by giving filename , then run the testcases.
 2.   Make sure that give correct file name which you want to read from file.
-3.   There is a method compare which takes tolerance and two image data and check whether two
-     images are equal or not.
+3.   There is a compare method written in EatinProgramUITests.swift which takes tolerance and 
+     two image data and check whether two images are equal or not.
 4.   Make Sure if you are setting tolerance == 0.0 , means images should exactly be equal.
      See on the top, time should also be same.
      if you don't want full screen shot then you can define frame for which you want to take screen shot.
