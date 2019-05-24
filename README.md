@@ -22,7 +22,7 @@
         
   #### Steps:-
    1. Convert from data into images .
-   2. Convert into cgImages because we need bimaps .
+   2. Convert into cgImages because we need bitmaps .
    3. Find out expected number of pixels .
    4. It allocates memory for the specified number of pixels for type unsigned 32-bit integer .
    5. Then compares pixel by pixel and based on the tolerance it returns true or false 
